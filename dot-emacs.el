@@ -1,5 +1,7 @@
 (menu-bar-mode -1)
 (global-auto-revert-mode t)
+(xterm-mouse-mode)
+(setq visible-bell 1)
 
 ; http://www.emacswiki.org/emacs/TransposeWindows
 (defun transpose-windows (arg)
@@ -52,3 +54,27 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
+
+(global-linum-mode t)
+(setq linum-format "%d  ")
+
+;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file name new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+
+;; source: https://www.emacswiki.org/emacs/SearchBuffers#toc10
+(defun search-all-buffers (regexp)
+   (interactive "sRegexp: ")
+   (multi-occur-in-matching-buffers "." regexp t))
