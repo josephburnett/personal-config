@@ -3,6 +3,8 @@
 (xterm-mouse-mode)
 (setq visible-bell 1)
 
+(ffap-bindings)
+
 ; http://www.emacswiki.org/emacs/TransposeWindows
 (defun transpose-windows (arg)
    "Transpose the buffers shown in two windows."
@@ -77,4 +79,4 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; source: https://www.emacswiki.org/emacs/SearchBuffers#toc10
 (defun search-all-buffers (regexp)
    (interactive "sRegexp: ")
-   (multi-occur-in-matching-buffers "." regexp t))
+   (multi-occur-in-matching-buffers "^[^\*]" regexp t))
