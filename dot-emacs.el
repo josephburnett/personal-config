@@ -80,3 +80,24 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun search-all-buffers (regexp)
    (interactive "sRegexp: ")
    (multi-occur-in-matching-buffers "^[^\*]" regexp t))
+
+;; Install IBuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 40 40 :left :elide) " "
+              (size 9 -1 :right) " "
+              (mode 16 16 :left :elide) " " filename-and-process)
+        (mark " " (name 16 -1) " " filename)))
+
+(defun delete-horizontal-space-across-lines ()
+  "Like delete-horizontal-space but works across newlines."
+  (interactive)
+  (let ((regexp-forward "[ \t\n]+"))
+    (re-search-forward regexp-forward nil t)
+    (replace-match "" nil nil))
+  (let ((regexp-backward "\\([^ \t\n]\\)[ \t\n]*"))
+    (re-search-backward regexp-backward nil t)
+    (replace-match "\\1" nil nil)))
+(global-set-key (kbd "M-\\") 'delete-horizontal-space-across-lines)
