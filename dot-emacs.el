@@ -91,6 +91,10 @@ i.e. change right window to bottom, or change bottom window to right."
               (mode 16 16 :left :elide) " " filename-and-process)
         (mark " " (name 16 -1) " " filename)))
 
+(fset 'show-ibuffer
+   "\C-x\C-b")
+(global-set-key (kbd "C-c b") 'show-ibuffer)
+
 (defun delete-horizontal-space-across-lines ()
   "Like delete-horizontal-space but works across newlines."
   (interactive)
