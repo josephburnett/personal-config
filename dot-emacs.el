@@ -1,9 +1,27 @@
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+; Basic stuff
 (menu-bar-mode -1)
 (global-auto-revert-mode t)
 (xterm-mouse-mode)
 (setq visible-bell 1)
 
 (ffap-bindings)
+
+; Shortcuts
+(fset 'gb 'recompile)
+
+; Golang stuff
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+	   "go build -v && go test -v && go vet"))
+  (local-set-key (kbd "M-.") 'godef-jump))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
 
 ; http://www.emacswiki.org/emacs/TransposeWindows
 (defun transpose-windows (arg)
