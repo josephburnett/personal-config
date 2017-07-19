@@ -1,0 +1,6 @@
+alias em='emacs'
+alias fm='xdg-open https://fastmail.com >/dev/null &'
+alias gd='git diff'
+alias gs='git status'
+alias kp='xdg-open https://keep.google.com >/dev/null &'
+alias op='xdg-open'
