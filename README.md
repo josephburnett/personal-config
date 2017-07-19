@@ -1,2 +1,2 @@
 # personal-config
-My .emacs file, alias and other personal configuration.
+My .emacs file, aliases and other personal configuration.
