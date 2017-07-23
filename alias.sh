@@ -1,4 +1,5 @@
 alias em='emacs'
+alias ff='firefox'
 alias fm='xdg-open https://fastmail.com >/dev/null &'
 alias gd='git diff'
 alias gs='git status'
