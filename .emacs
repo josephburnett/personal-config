@@ -123,3 +123,8 @@ i.e. change right window to bottom, or change bottom window to right."
     (re-search-backward regexp-backward nil t)
     (replace-match "\\1" nil nil)))
 (global-set-key (kbd "M-\\") 'delete-horizontal-space-across-lines)
+
+(defun up-slightly () (interactive) (scroll-up 5))
+(defun down-slightly () (interactive) (scroll-down 5))
+(global-set-key (kbd "<mouse-4>") 'down-slightly)
+(global-set-key (kbd "<mouse-5>") 'up-slightly)
