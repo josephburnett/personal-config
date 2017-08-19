@@ -128,3 +128,6 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun down-slightly () (interactive) (scroll-down 5))
 (global-set-key (kbd "<mouse-4>") 'down-slightly)
 (global-set-key (kbd "<mouse-5>") 'up-slightly)
+
+;; Callow
+(add-to-list 'auto-mode-alist '("\\.clw\\'" . clojure-mode))
