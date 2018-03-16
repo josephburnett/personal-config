@@ -42,7 +42,7 @@
   "Open bash in an ansi-term."
   (interactive)
   (ansi-term "/bin/bash"))
-(define-key ctl-x-4-map (kbd "s") 'bash)
+(define-key ctl-x-4-map (kbd "4") 'bash)
 
 ; IBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
