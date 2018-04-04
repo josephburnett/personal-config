@@ -8,3 +8,5 @@ alias kp='xdg-open https://keep.google.com >/dev/null &'
 alias lx='lynx -use_mouse'
 alias op='xdg-open'
 alias up="upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/percentage/ { print \$2 }'"
+alias gotest="while true ; do inotifywait -qq -e close_write -r . 2>/dev/null ; go test *.go ; done"
+
