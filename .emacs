@@ -57,6 +57,12 @@
    "\C-x\C-b")
 (global-set-key (kbd "C-c b") 'show-ibuffer)
 
+(defun switch-to-other-buffer ()
+  "Switch to other buffer."
+  (interactive)
+  (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))))
+(global-set-key (kbd "C-c o") 'switch-to-other-buffer)
+
 ; Window order and orientation
 ; http://www.emacswiki.org/emacs/TransposeWindows
 (defun transpose-windows (arg)
@@ -137,8 +143,36 @@ i.e. change right window to bottom, or change bottom window to right."
 ; Callow
 (add-to-list 'auto-mode-alist '("\\.clw\\'" . clojure-mode))
 
-; Golang autocomplete
-; https://github.com/nsf/gocode/tree/master/emacs-company
+; Golang
+(require 'go-guru)                                   ; load guru
+
+;; https://johnsogg.github.io/emacs-golang
+;; Define function to call when go-mode loads
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
+  (setq gofmt-command "goimports")                ; gofmt uses invokes goimports
+  (if (not (string-match "go" compile-command))   ; set compile command default
+      (set (make-local-variable 'compile-command)
+	   "go build -v && go test -v && go vet"))
+
+  ;; ;; guru settings
+  ;; (go-guru-hl-identifier-mode)                    ; highlight identifiers
+
+  ;; ;; Key bindings specific to go-mode
+  ;; (local-set-key (kbd "M-.") 'godef-jump)         ; Go to definition
+  ;; (local-set-key (kbd "M-*") 'pop-tag-mark)       ; Return from whence you came
+  ;; (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
+  ;; (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
+  ;; (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
+  ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+
+  ;; Misc go stuff
+  (auto-complete-mode 1))                         ; Enable auto-complete mode
+
+;; Connect go-mode-hook with the function we just defined
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
+;;https://github.com/nsf/gocode/tree/master/emacs-company
 (require 'company)                                   ; load company mode
 (require 'company-go)                                ; load company mode go backend
 (setq company-tooltip-limit 20)                      ; bigger popup window
@@ -163,3 +197,4 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip-common-selection
    ((((type x)) (:inherit company-tooltip-selection :weight bold))
     (t (:inherit company-tooltip-selection)))))
+
