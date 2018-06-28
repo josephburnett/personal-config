@@ -3,6 +3,7 @@ alias ff='firefox'
 alias fm='xdg-open https://fastmail.com >/dev/null &'
 alias gd='git diff'
 alias gs='git status'
+# https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias kickshell='exec bash -l'
 alias op='xdg-open'
