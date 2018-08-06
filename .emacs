@@ -167,7 +167,8 @@ i.e. change right window to bottom, or change bottom window to right."
   ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
   ;; Misc go stuff
-  (auto-complete-mode 1))                         ; Enable auto-complete mode
+  ;; (auto-complete-mode 1))                         ; Enable auto-complete mode
+  )
 
 ;; Connect go-mode-hook with the function we just defined
 (add-hook 'go-mode-hook 'my-go-mode-hook)
