@@ -11,3 +11,9 @@ alias up="upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/percent
 alias gotest="while true ; do inotifywait -qq -e close_write -r . 2>/dev/null ; go test *.go ; done"
 alias pd='pushd'
 
+alias kk='kubectl'
+alias kkn='kubectl -n knative-serving'
+alias kkc='kubectl config current-context'
+alias koa='ko apply'
+alias kod='ko delete  --ignore-not-found'
+alias when="ts '[%Y-%m-%d %H:%M:%.S]'"
