@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+go test -covermode=count -coverprofile=/tmp/coverage.out $@
+go tool cover -html=/tmp/coverage.out
