@@ -72,6 +72,10 @@
   (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))))
 (global-set-key (kbd "C-c o") 'switch-to-other-buffer)
 
+; Neotree
+(require 'neotree)
+(global-set-key (kbd "C-c n") 'neotree-toggle)
+
 ; Window order and orientation
 ; http://www.emacswiki.org/emacs/TransposeWindows
 (defun transpose-windows (arg)
@@ -203,4 +207,3 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
-
