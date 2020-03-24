@@ -6,7 +6,6 @@
     "Alt-x": "CommandMode",
     "CtrlA": "StartOfLine",
     "CtrlE": "EndOfLine",
-    "CtrlF": "OpenFile",
     "CtrlG": "Escape",
     "CtrlJ": "JumpLine",
     "CtrlK": "CutLine",
@@ -14,5 +13,9 @@
     "CtrlS": "Find",
     "CtrlV": "CursorPageDown",
     "CtrlY": "Paste",
-    "Ctrl_": "Undo"
+    "Ctrl_": "Undo",
+    "CtrlN": "CursorDown",
+    "CtrlP": "CursorUp",
+    "CtrlF": "CursorRight",
+    "CtrlB": "CursorLeft"
 }
