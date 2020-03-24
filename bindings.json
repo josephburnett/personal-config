@@ -1,0 +1,18 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "Alt-b": "WordLeft",
+    "Alt-f": "WordRight",
+    "Alt-v": "CursorPageUp",
+    "Alt-x": "CommandMode",
+    "CtrlA": "StartOfLine",
+    "CtrlE": "EndOfLine",
+    "CtrlF": "OpenFile",
+    "CtrlG": "Escape",
+    "CtrlJ": "JumpLine",
+    "CtrlK": "CutLine",
+    "CtrlR": "FindPrevious",
+    "CtrlS": "Find",
+    "CtrlV": "CursorPageDown",
+    "CtrlY": "Paste",
+    "Ctrl_": "Undo"
+}
