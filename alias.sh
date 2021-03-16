@@ -9,3 +9,4 @@ alias kkc='kubectl config current-context'
 alias koa='ko apply'
 alias kod='ko delete  --ignore-not-found'
 alias when="ts '[%Y-%m-%d %H:%M:%.S]'"
+alias gotest='while true; do inotifywait -e close_write -r . 2>/dev/null ; clear ; go test ./... ; done'
