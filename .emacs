@@ -35,6 +35,7 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(org-agenda-files (quote ("~/org/inbox.org")))
  '(package-selected-packages
    (quote
     (clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go))))
@@ -207,3 +208,7 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
+
+
+; Org mode
+(global-set-key "\C-ca" 'org-agenda)
