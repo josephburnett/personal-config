@@ -33,12 +33,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
- '(org-agenda-files (quote ("~/org/inbox.org")))
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
+ '(org-agenda-files '("~/org/inbox.org"))
+ '(org-tags-column 80)
  '(package-selected-packages
-   (quote
-    (clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go))))
+   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
@@ -212,3 +212,4 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ; Org mode
 (global-set-key "\C-ca" 'org-agenda)
+(setq org-log-done 'time)
