@@ -33,17 +33,27 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
- '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
- '(org-agenda-files '("~/org/inbox.org"))
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(org-agenda-files (quote ("~/org/schedule.org" "~/org/inbox.org")))
  '(org-tags-column 80)
  '(package-selected-packages
-   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
+   (quote
+    (clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go))))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
 ; Navigation
 (global-set-key (kbd "C-c C-c") 'goto-line)
+
+
+;; ORG MODE
+
+(global-set-key "\C-ca" 'org-agenda)
+(setq org-log-done 'time)
+(load "~/org-gcal-secret.el")
+(load "~/org-gcal.el/org-generic-id.el")
+(load "~/org-gcal.el/org-gcal.el")
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
@@ -209,7 +219,3 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
 
-
-; Org mode
-(global-set-key "\C-ca" 'org-agenda)
-(setq org-log-done 'time)
