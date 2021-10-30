@@ -51,6 +51,7 @@
 
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-log-done 'time)
+(global-set-key "\C-cf" 'org-gcal-fetch)
 (load "~/org-gcal-secret.el")
 (load "~/org-gcal.el/org-generic-id.el")
 (load "~/org-gcal.el/org-gcal.el")
