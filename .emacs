@@ -35,7 +35,7 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
- '(org-agenda-files (quote ("~/org/schedule.org" "~/org/inbox.org")))
+ '(org-agenda-files (quote ("~/org/schedule.org" "~/org/log.org")))
  '(org-tags-column 80)
  '(package-selected-packages
    (quote
@@ -50,6 +50,11 @@
 ;; ORG MODE
 
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/org/log.org") "* TODO %? %^g\n  %i\n  %U\n")
+	("d" "Done" entry (file "~/org/log.org") "* DONE %? %^g\n  %i\n  CLOSED: %U\n  %U\n")
+	("n" "Notes" entry (file "~/org/log.org") "* %?\n  %i\n  %U\n")))
 (setq org-log-done 'time)
 (global-set-key "\C-cf" 'org-gcal-fetch)
 (load "~/org-gcal-secret.el")
