@@ -33,13 +33,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
- '(org-agenda-files (quote ("~/org/schedule.org" "~/org/log.org")))
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
+ '(org-agenda-files '("~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
  '(org-tags-column 160)
  '(package-selected-packages
-   (quote
-    (clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go))))
+   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
@@ -52,9 +51,14 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+datetree "~/org/log.org") "* TODO %?\n  %i\n  %U\n" :prepend t :jump-to-captured t)
-	("d" "Done" entry (file+datetree "~/org/log.org") "* DONE %? \n  %i\n  CLOSED: %U\n  %U\n" :prepend t :jump-to-captured t)
+      '(("t" "Todo" entry (file+datetree "~/org/log.org") "* TODO %?\n  %i\n  %U\n" :tree-type week :prepend t :jump-to-captured t)
+	("d" "Done" entry (file+datetree "~/org/log.org") "* DONE %? \n  %i\n  CLOSED: %U\n  %U\n" :tree-type week :prepend t :jump-to-captured t)
+	("o" "Open" entry (file+datetree "~/org/log.org") "* %?\n" :tree-type week :prepend t :jump-to-captured t :time-prompt t :immediate-finish t)
 	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps t)
+(setq org-refile-targets '(("log.org" :maxlevel . 9)
+			   ("backlog.org" :maxlevel . 1)))
 (setq org-log-done 'time)
 (global-set-key "\C-cf" 'org-gcal-fetch)
 (global-set-key "\C-cs" 'org-gcal-sync)
