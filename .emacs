@@ -51,9 +51,22 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+datetree "~/org/log.org") "* TODO %?\n  %i\n  %U\n" :tree-type week :prepend t :jump-to-captured t)
-	("d" "Done" entry (file+datetree "~/org/log.org") "* DONE %? \n  %i\n  CLOSED: %U\n  %U\n" :tree-type week :prepend t :jump-to-captured t)
-	("o" "Open" entry (file+datetree "~/org/log.org") "* %?\n" :tree-type week :prepend t :jump-to-captured t :time-prompt t :immediate-finish t)
+      '(("t" "Todo" entry (file+datetree "~/org/log.org") "* TODO %?\n  %i\n  %U\n"
+	 :tree-type week
+	 :prepend t
+	 :jump-to-captured t
+	 :time-prompt t)
+	("d" "Done" entry (file+datetree "~/org/log.org") "* DONE %? \n  %i\n  CLOSED: %U\n  %U\n"
+	 :tree-type week
+	 :prepend t
+	 :jump-to-captured t
+	 :time-prompt t)
+	("o" "Open" entry (file+datetree "~/org/log.org") "* %?\n"
+	 :tree-type week
+	 :prepend t
+	 :jump-to-captured t
+	 :time-prompt t
+	 :immediate-finish t)
 	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
