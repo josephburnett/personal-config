@@ -36,7 +36,7 @@
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(org-agenda-files '("~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
- '(org-tags-column 160)
+ '(org-tags-column 100)
  '(package-selected-packages
    '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
 ; create the autosave dir if necessary, since emacs won't.
