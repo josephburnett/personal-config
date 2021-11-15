@@ -54,12 +54,10 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  %i\n  %U\n"
-	 :prepend t
-	 :jump-to-captured t)
-	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  %i\n  CLOSED: %U\n  %U\n"
-	 :prepend t
-	 :jump-to-captured t)
+      '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  SCHEDULED: %t\n  %i\n  %U\n"
+	 :prepend t)
+	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
+	 :prepend t)
 	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
@@ -72,6 +70,11 @@
 (load "~/org-gcal-secret.el")
 (load "~/org-gcal.el/org-generic-id.el")
 (load "~/org-gcal.el/org-gcal.el")
+
+(setq org-agenda-custom-commands
+      '(("d" "Dashboard"
+         ((agenda "-f" ((org-agenda-span 1)))
+          (tags "TODO=\"DONE\"-time")))))
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
