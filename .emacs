@@ -73,7 +73,8 @@
 
 (setq org-agenda-custom-commands
       '(("d" "Dashboard"
-         ((agenda "-f" ((org-agenda-span 7)))
+         ((agenda "-f" ((org-agenda-span 7)
+			(org-agenda-remove-tags t)))
           (tags "TODO=\"DONE\"-time")
           (tags "TODO=\"DONE\"-category")))))
 
