@@ -74,9 +74,20 @@
 (setq org-agenda-custom-commands
       '(("d" "Dashboard"
          ((agenda "-f" ((org-agenda-span 7)
-			(org-agenda-remove-tags t)))
+			(org-agenda-remove-tags t)
+			(org-deadline-warning-days 0)))
           (tags "TODO=\"DONE\"-time")
-          (tags "TODO=\"DONE\"-category")))))
+          (tags "TODO=\"DONE\"-category")))
+	("o" "Time-Flies"
+         ((agenda "TODO=\"DONE\"" ((org-agenda-span 7)
+				   (org-agenda-prefix-format "[x]")
+				   (org-agenda-todo-keyword-format "")
+				   (org-agenda-entry-types '(:scheduled))
+				   (org-deadline-warning-days 0))))
+	 nil
+	 ("~/org/tf-log"))
+	))
+
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
