@@ -56,16 +56,18 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  SCHEDULED: %t\n  %i\n  %U\n"
 	 :prepend t)
+        ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  %i\n  %U\n"
+	 :prepend t :jump-to-captured t)
 	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
 	 :prepend t)
-	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
+	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n"
+	 :prepend t)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
 (setq org-refile-targets '(("log.org" :maxlevel . 1)
 			   ("backlog.org" :maxlevel . 1)))
 (setq org-log-done 'time)
 (global-set-key "\C-cf" 'org-gcal-fetch)
-(global-set-key "\C-cs" 'org-gcal-sync)
 (global-set-key "\C-ck" 'org-gcal-delete-at-point)
 (load "~/org-gcal-secret.el")
 (load "~/org-gcal.el/org-generic-id.el")
@@ -77,7 +79,9 @@
 			(org-agenda-remove-tags t)
 			(org-deadline-warning-days 0)))
           (tags "TODO=\"DONE\"-time")
-          (tags "TODO=\"DONE\"-category")))
+          (tags "TODO=\"DONE\"-category")
+	  (tags-todo "URGENT")
+	  (tags-todo "IMPORTANT")))
 	("o" "Time-Flies"
          ((agenda "TODO=\"DONE\"" ((org-agenda-span 7)
 				   (org-agenda-prefix-format "[x]")
@@ -252,4 +256,3 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
-
