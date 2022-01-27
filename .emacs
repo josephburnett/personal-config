@@ -55,7 +55,7 @@
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  SCHEDULED: %t\n  %i\n  %U\n"
-	 :prepend t)
+	 :prepend t :jump-to-captured t)
         ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  %i\n  %U\n"
 	 :prepend t :jump-to-captured t)
 	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
@@ -78,8 +78,8 @@
          ((agenda "-f" ((org-agenda-span 7)
 			(org-agenda-remove-tags t)
 			(org-deadline-warning-days 0)))
-          (tags "TODO=\"DONE\"-time")
-          (tags "TODO=\"DONE\"-category")
+;          (tags "TODO=\"DONE\"-time")
+;          (tags "TODO=\"DONE\"-category")
 	  (tags-todo "URGENT")
 	  (tags-todo "IMPORTANT")))
 	("o" "Time-Flies"
@@ -91,7 +91,9 @@
 	 nil
 	 ("~/org/tf-log"))
 	))
-
+(setq org-highest-priority 1)
+(setq org-default-priority 10)
+(setq org-lowest-priority 10)
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
