@@ -51,7 +51,7 @@
    '(("IMPORTANT" :foreground "purple")
      ("URGENT" :foreground "red")
      ("PROMISE" :foreground "cyan")))
- '(org-tags-column 100)
+ '(org-tags-column 0)
  '(package-selected-packages
    '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
 ; create the autosave dir if necessary, since emacs won't.
@@ -66,9 +66,9 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  SCHEDULED: %t\n  %i\n  %U\n"
+      '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
 	 :prepend t :jump-to-captured t)
-        ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %?\n  %i\n  %U\n"
+        ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  %i\n  %U\n"
 	 :prepend t :jump-to-captured t)
 	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
 	 :prepend t)
