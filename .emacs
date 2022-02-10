@@ -44,6 +44,8 @@
      (search . " %i %-12:c")))
  '(org-agenda-remove-tags nil)
  '(org-agenda-tags-column 0)
+ '(org-fontify-done-headline nil)
+ '(org-fontify-todo-headline nil)
  '(org-priority-faces
    '((49 :foreground "white" :weight bold)
      (50 :foreground "white" :weight normal)))
@@ -67,9 +69,9 @@
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
-	 :prepend t :jump-to-captured t)
+	 :prepend t)
         ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  %i\n  %U\n"
-	 :prepend t :jump-to-captured t)
+	 :prepend t)
 	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
 	 :prepend t)
 	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n"
@@ -275,6 +277,4 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
- '(org-priority ((t (:weight bold))))
- '(org-tag ((t (:foreground "yellow")))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
