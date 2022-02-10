@@ -28,20 +28,39 @@
 
 ; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 ; http://snarfed.org/gnu_emacs_backup_files
- (custom-set-variables
+ 
+(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
+ '(org-agenda-custom-commands
+   '(("d" "Dashboard"
+      ((agenda "-f"
+	       ((org-agenda-span 7)
+		(org-deadline-warning-days 0)))
+       (tags-todo "URGENT" nil)
+       (tags-todo "IMPORTANT" nil))
+      nil)
+     ("o" "Time-Flies"
+      ((agenda "TODO=\"DONE\""
+	       ((org-agenda-span 7)
+		(org-agenda-prefix-format "[x]")
+		(org-agenda-todo-keyword-format "")
+		(org-agenda-entry-types
+		 '(:scheduled))
+		(org-deadline-warning-days 0))))
+      nil
+      ("~/org/tf-log"))))
  '(org-agenda-files
    '("~/org/mobile.org" "~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
  '(org-agenda-prefix-format
-   '((agenda . " %-6e %?-12t")
-     (todo . " %i %-12:c")
-     (tags . " %i %-12:c")
-     (search . " %i %-12:c")))
+   '((agenda . " %-6e ")
+     (todo . " %-6e ")
+     (tags . " %-6e ")
+     (search . " %-6e")))
  '(org-agenda-remove-tags nil)
  '(org-agenda-tags-column 0)
  '(org-fontify-done-headline nil)
@@ -88,24 +107,24 @@
 (load "~/org-gcal.el/org-generic-id.el")
 (load "~/org-gcal.el/org-gcal.el")
 
-(setq org-agenda-custom-commands
-      '(("d" "Dashboard"
-         ((agenda "-f" ((org-agenda-span 7)
+;(setq org-agenda-custom-commands
+;      '(("d" "Dashboard"
+;         ((agenda "-f" ((org-agenda-span 7)
 ;			(org-agenda-remove-tags t)
-			(org-deadline-warning-days 0)))
+;			(org-deadline-warning-days 0)))
 ;          (tags "TODO=\"DONE\"-time")
 ;          (tags "TODO=\"DONE\"-category")
-	  (tags-todo "URGENT")
-	  (tags-todo "IMPORTANT")))
-	("o" "Time-Flies"
-         ((agenda "TODO=\"DONE\"" ((org-agenda-span 7)
-				   (org-agenda-prefix-format "[x]")
-				   (org-agenda-todo-keyword-format "")
-				   (org-agenda-entry-types '(:scheduled))
-				   (org-deadline-warning-days 0))))
-	 nil
-	 ("~/org/tf-log"))
-	))
+;	  (tags-todo "URGENT")
+;	  (tags-todo "IMPORTANT")))
+;	("o" "Time-Flies"
+;         ((agenda "TODO=\"DONE\"" ((org-agenda-span 7)
+;				   (org-agenda-prefix-format "[x]")
+;				   (org-agenda-todo-keyword-format "")
+;				   (org-agenda-entry-types '(:scheduled))
+;				   (org-deadline-warning-days 0))))
+;	 nil
+;	 ("~/org/tf-log"))
+;	))
 (setq org-highest-priority 1)
 (setq org-default-priority 4)
 (setq org-lowest-priority 4)
@@ -278,4 +297,5 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
+ '(org-tag ((t (:foreground "white" :weight bold)))))
