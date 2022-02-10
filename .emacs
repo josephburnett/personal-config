@@ -28,7 +28,7 @@
 
 ; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 ; http://snarfed.org/gnu_emacs_backup_files
-(custom-set-variables
+ (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -47,8 +47,9 @@
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
  '(org-priority-faces
-   '((49 :foreground "white" :weight bold)
-     (50 :foreground "white" :weight normal)))
+   '((49 :background "blue" :foreground "white" :weight bold)
+     (50 :background "blue" :foreground "white" :weight normal)
+     (51 :background "blue" :foreground "white" :weight normal)))
  '(org-tag-faces
    '(("IMPORTANT" :foreground "purple")
      ("URGENT" :foreground "red")
@@ -106,8 +107,8 @@
 	 ("~/org/tf-log"))
 	))
 (setq org-highest-priority 1)
-(setq org-default-priority 10)
-(setq org-lowest-priority 10)
+(setq org-default-priority 4)
+(setq org-lowest-priority 4)
 ; https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view
 ;; (setq org-agenda-prefix-format '((agenda . " %i %?-12t%-6e% s")
 ;;                                 (todo . " %i %-12:c %-6e")
