@@ -33,15 +33,27 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(org-agenda-files
-   (quote
-    ("~/org/mobile.org" "~/org/backlog.org" "~/org/schedule.org" "~/org/log.org")))
+   '("~/org/mobile.org" "~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
+ '(org-agenda-prefix-format
+   '((agenda . " %-6e %?-12t")
+     (todo . " %i %-12:c")
+     (tags . " %i %-12:c")
+     (search . " %i %-12:c")))
+ '(org-agenda-remove-tags nil)
+ '(org-agenda-tags-column 0)
+ '(org-priority-faces
+   '((49 :foreground "white" :weight bold)
+     (50 :foreground "white" :weight normal)))
+ '(org-tag-faces
+   '(("IMPORTANT" :foreground "purple")
+     ("URGENT" :foreground "red")
+     ("PROMISE" :foreground "cyan")))
  '(org-tags-column 100)
  '(package-selected-packages
-   (quote
-    (clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go))))
+   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
@@ -76,7 +88,7 @@
 (setq org-agenda-custom-commands
       '(("d" "Dashboard"
          ((agenda "-f" ((org-agenda-span 7)
-			(org-agenda-remove-tags t)
+;			(org-agenda-remove-tags t)
 			(org-deadline-warning-days 0)))
 ;          (tags "TODO=\"DONE\"-time")
 ;          (tags "TODO=\"DONE\"-category")
@@ -94,6 +106,12 @@
 (setq org-highest-priority 1)
 (setq org-default-priority 10)
 (setq org-lowest-priority 10)
+; https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view
+;; (setq org-agenda-prefix-format '((agenda . " %i %?-12t%-6e% s")
+;;                                 (todo . " %i %-12:c %-6e")
+;;                                 (tags . " %i %-12:c")
+;;                                 (search . " %i %-12:c")))
+
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
@@ -257,4 +275,6 @@ i.e. change right window to bottom, or change bottom window to right."
  '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steelblue" :foreground "white")))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
+ '(org-priority ((t (:weight bold))))
+ '(org-tag ((t (:foreground "yellow")))))
