@@ -66,9 +66,9 @@
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
  '(org-priority-faces
-   '((49 :background "blue" :foreground "white" :weight bold)
-     (50 :background "blue" :foreground "white" :weight normal)
-     (51 :background "blue" :foreground "white" :weight normal)))
+   '((65 :background "blue" :foreground "white" :weight bold)
+     (66 :background "blue" :foreground "white" :weight normal)
+     (67 :background "blue" :foreground "white" :weight normal)))
  '(org-tag-faces
    '(("IMPORTANT" :foreground "purple")
      ("URGENT" :foreground "red")
@@ -125,9 +125,9 @@
 ;	 nil
 ;	 ("~/org/tf-log"))
 ;	))
-(setq org-highest-priority 1)
-(setq org-default-priority 4)
-(setq org-lowest-priority 4)
+(setq org-highest-priority ?A)
+(setq org-default-priority ?C)
+(setq org-lowest-priority ?C)
 ; https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view
 ;; (setq org-agenda-prefix-format '((agenda . " %i %?-12t%-6e% s")
 ;;                                 (todo . " %i %-12:c %-6e")
