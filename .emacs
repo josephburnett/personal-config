@@ -1,7 +1,21 @@
+
+; https://gist.github.com/belak/ca1c9ae75e53324ee16e2e5289a9c4bc
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
+
+;; Ensure use-package is installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; Configure and load use-package
+(setq use-package-always-ensure t)
+
+(eval-when-compile
+  (defvar use-package-verbose t)
+  (require 'use-package))
 
 
 ;; BASIC STUFF ;;
@@ -18,6 +32,10 @@
 ; Line numbers
 (global-linum-mode t)
 (setq linum-format "%d  ")
+;; Ensure use-package is installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 ; Mouse
 (xterm-mouse-mode)
@@ -75,7 +93,7 @@
      ("PROMISE" :foreground "cyan")))
  '(org-tags-column 0)
  '(package-selected-packages
-   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru company-go)))
+   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
@@ -103,36 +121,9 @@
 (setq org-log-done 'time)
 (global-set-key "\C-cf" 'org-gcal-fetch)
 (global-set-key "\C-ck" 'org-gcal-delete-at-point)
-(load "~/org-gcal-secret.el")
-(load "~/org-gcal.el/org-generic-id.el")
-(load "~/org-gcal.el/org-gcal.el")
-
-;(setq org-agenda-custom-commands
-;      '(("d" "Dashboard"
-;         ((agenda "-f" ((org-agenda-span 7)
-;			(org-agenda-remove-tags t)
-;			(org-deadline-warning-days 0)))
-;          (tags "TODO=\"DONE\"-time")
-;          (tags "TODO=\"DONE\"-category")
-;	  (tags-todo "URGENT")
-;	  (tags-todo "IMPORTANT")))
-;	("o" "Time-Flies"
-;         ((agenda "TODO=\"DONE\"" ((org-agenda-span 7)
-;				   (org-agenda-prefix-format "[x]")
-;				   (org-agenda-todo-keyword-format "")
-;				   (org-agenda-entry-types '(:scheduled))
-;				   (org-deadline-warning-days 0))))
-;	 nil
-;	 ("~/org/tf-log"))
-;	))
 (setq org-highest-priority ?A)
 (setq org-default-priority ?C)
 (setq org-lowest-priority ?C)
-; https://emacs.stackexchange.com/questions/53272/show-effort-and-clock-time-in-agenda-view
-;; (setq org-agenda-prefix-format '((agenda . " %i %?-12t%-6e% s")
-;;                                 (todo . " %i %-12:c %-6e")
-;;                                 (tags . " %i %-12:c")
-;;                                 (search . " %i %-12:c")))
 
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
@@ -242,60 +233,32 @@ i.e. change right window to bottom, or change bottom window to right."
 (global-set-key (kbd "M-\\") 'delete-horizontal-space-across-lines)
 
 
-;; LANGUAGE CONFIGURATION
+;; LANGUAGE CONFIGURATION ;;
 
 ; Callow
 (add-to-list 'auto-mode-alist '("\\.clw\\'" . clojure-mode))
 
 ; Golang
-(require 'go-guru)                                   ; load guru
 
-;; https://johnsogg.github.io/emacs-golang
-;; Define function to call when go-mode loads
-(defun my-go-mode-hook ()
-  (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
-  (setq gofmt-command "goimports")                ; gofmt uses invokes goimports
-  (if (not (string-match "go" compile-command))   ; set compile command default
-      (set (make-local-variable 'compile-command)
-	   "go build -v && go test -v && go vet"))
+; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-l"))
+(add-hook 'go-mode-hook #'lsp-deferred)
 
-  ;; ;; guru settings
-  ;; (go-guru-hl-identifier-mode)                    ; highlight identifiers
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
-  ;; ;; Key bindings specific to go-mode
-  ;; (local-set-key (kbd "M-.") 'godef-jump)         ; Go to definition
-  ;; (local-set-key (kbd "M-*") 'pop-tag-mark)       ; Return from whence you came
-  ;; (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
-  ;; (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
-  ;; (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
-  ;; Misc go stuff
-  ;; (auto-complete-mode 1))                         ; Enable auto-complete mode
-  )
+;; OTHER ;;
 
-;; Connect go-mode-hook with the function we just defined
-(add-hook 'go-mode-hook 'my-go-mode-hook)
-
-;;https://github.com/nsf/gocode/tree/master/emacs-company
-(require 'company)                                   ; load company mode
-(require 'company-go)                                ; load company mode go backend
-(setq company-tooltip-limit 20)                      ; bigger popup window
-(setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
-(setq company-echo-delay 0)                          ; remove annoying blinking
-(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-(add-hook 'go-mode-hook (lambda ()
-                          (set (make-local-variable 'company-backends) '(company-go))
-                          (company-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-preview ((t (:foreground "darkgray" :underline t))))
- '(company-preview-common ((t (:inherit company-preview))))
- '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
- '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
- '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(org-tag ((t (:foreground "white" :weight bold)))))
