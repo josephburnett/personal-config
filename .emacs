@@ -59,6 +59,7 @@
       ((agenda "-f"
 	       ((org-agenda-span 7)
 		(org-deadline-warning-days 0)))
+       (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
        (tags-todo "IMPORTANT" nil))
       nil)
