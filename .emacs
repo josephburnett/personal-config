@@ -244,7 +244,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
 (use-package lsp-mode
   :init
-  (setq lsp-keymap-prefix "C-l"))
+  (setq lsp-keymap-prefix "C-o"))
 (add-hook 'go-mode-hook #'lsp-deferred)
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
