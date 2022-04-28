@@ -125,7 +125,7 @@
 (setq org-highest-priority ?A)
 (setq org-default-priority ?C)
 (setq org-lowest-priority ?C)
-
+(setq org-reverse-note-order t)
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
