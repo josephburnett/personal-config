@@ -62,24 +62,14 @@
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
        (tags-todo "IMPORTANT" nil))
-      nil)
-     ("o" "Time-Flies"
-      ((agenda "TODO=\"DONE\""
-	       ((org-agenda-span 7)
-		(org-agenda-prefix-format "[x]")
-		(org-agenda-todo-keyword-format "")
-		(org-agenda-entry-types
-		 '(:scheduled))
-		(org-deadline-warning-days 0))))
-      nil
-      ("~/org/tf-log"))))
+      nil)))
  '(org-agenda-files
    '("~/org/mobile.org" "~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
  '(org-agenda-prefix-format
-   '((agenda . " %-8c| ")
-     (todo . " %-8c| ")
-     (tags . " %-8c| ")
-     (search . " %-8c| ")))
+   '((agenda . "  %-8c| ")
+     (todo . "  %-8c| ")
+     (tags . "  %-8c| ")
+     (search . "  %-8c| ")))
  '(org-agenda-remove-tags nil)
  '(org-agenda-tags-column 0)
  '(org-fontify-done-headline nil)
@@ -108,6 +98,8 @@
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
       '(("t" "Today" entry (file+headline "~/org/log.org" "Today") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
+	 :prepend t)
+        ("w" "Week" entry (file+headline "~/org/log.org" "Week") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
 	 :prepend t)
         ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  %i\n  %U\n"
 	 :prepend t)
