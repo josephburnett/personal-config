@@ -97,19 +97,15 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-capture-templates
-      '(("t" "Today" entry (file+headline "~/org/log.org" "Today") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
-	 :prepend t)
-        ("w" "Week" entry (file+headline "~/org/log.org" "Week") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
-	 :prepend t)
-        ("l" "Log" entry (file+headline "~/org/log.org" "Log") "* TODO %? %^g\n  %i\n  %U\n"
-	 :prepend t)
-	("d" "Done" entry (file+headline "~/org/log.org" "Log") "* DONE %? \n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
-	 :prepend t)
-	("n" "Notes" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n"
-	 :prepend t)))
+      '(("t" "Todo" entry (file+olp+datetree "~/org/log.org") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n"
+	 :prepend t :tree-type month)
+	("d" "Done" entry (file+olp+datetree "~/org/log.org") "* DONE %? %^g\n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n"
+	 :prepend t :tree-type month)
+        ("n" "Note" entry (file+olp+datetree "~/org/log.org") "* TODO %? %^g\n  %i\n  %U\n"
+	 :prepend t :tree-type month)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
-(setq org-refile-targets '(("log.org" :maxlevel . 1)
+(setq org-refile-targets '(("log.org" :maxlevel . 2)
 			   ("backlog.org" :maxlevel . 1)))
 (setq org-log-done 'time)
 (global-set-key "\C-cf" 'org-gcal-fetch)
