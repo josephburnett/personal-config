@@ -63,8 +63,7 @@
        (tags-todo "URGENT" nil)
        (tags-todo "IMPORTANT" nil))
       nil)))
- '(org-agenda-files
-   '("~/org/mobile.org" "~/org/backlog.org" "~/org/schedule.org" "~/org/log.org"))
+ '(org-agenda-files '("/Users/josephburnett/org/log.org"))
  '(org-agenda-prefix-format
    '((agenda . "  %-8c| ")
      (todo . "  %-8c| ")
