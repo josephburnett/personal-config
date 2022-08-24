@@ -99,7 +99,7 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/log.org") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n")
 	("d" "Done" entry (file "~/org/log.org") "* DONE %? %^g\n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n")
-        ("n" "Note" entry (file "~/org/log.org") "* TODO %? %^g\n  %i\n  %U\n")))
+        ("n" "Note" entry (file "~/org/notes.org") "* %? %^g\n  %i\n  %U\n")))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
 (setq org-refile-targets '(("log.org" :maxlevel . 2)
