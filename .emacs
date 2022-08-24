@@ -54,6 +54,7 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
+ '(custom-enabled-themes '(manoj-dark))
  '(org-agenda-custom-commands
    '(("d" "Dashboard"
       ((agenda "-f"
