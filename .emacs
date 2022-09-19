@@ -12,6 +12,7 @@
 
 ;; Configure and load use-package
 (setq use-package-always-ensure t)
+(setq org-link-search-must-match-exact-headline t)
 
 (eval-when-compile
   (defvar use-package-verbose t)
@@ -96,6 +97,8 @@
 
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
+(global-set-key (kbd "C-c l") #'org-store-link)
+
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/log.org") "* TODO %? %^g\n  SCHEDULED: %t\n  %i\n  %U\n" :prepend t)
 	("d" "Done" entry (file "~/org/log.org") "* DONE %? %^g\n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n" :prepend t)
@@ -111,6 +114,7 @@
 (setq org-default-priority ?C)
 (setq org-lowest-priority ?C)
 (setq org-reverse-note-order t)
+(setq org-link-search-must-match-exact-headline nil)
 
 ;; WINDOW AND BUFFER MANAGEMENT ;;
 
