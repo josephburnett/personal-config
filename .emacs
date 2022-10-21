@@ -63,14 +63,16 @@
 		(org-deadline-warning-days 0)))
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
-       (tags-todo "IMPORTANT" nil))
+       (tags-todo "IMPORTANT" nil)
+       (tags-todo "machine" nil)
+       (tags-todo "devex"))
       nil)))
  '(org-agenda-files '("~/org/notes.org" "~/org/log.org"))
  '(org-agenda-prefix-format
-   '((agenda . "  %-8c| ")
-     (todo . "  %-8c| ")
-     (tags . "  %-8c| ")
-     (search . "  %-8c| ")))
+   '((agenda . " %-6e| ")
+     (todo . " %-6e| ")
+     (tags . " %-6e| ")
+     (search . " %-6e| ")))
  '(org-agenda-remove-tags nil)
  '(org-agenda-tags-column 0)
  '(org-fontify-done-headline nil)
@@ -85,12 +87,9 @@
      ("PROMISE" :foreground "cyan")))
  '(org-tags-column 0)
  '(package-selected-packages
-   '(clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru)))
+   '(dired-sidebar clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
-
-; Navigation
-(global-set-key (kbd "C-c C-c") 'goto-line)
 
 
 ;; ORG MODE
@@ -144,9 +143,14 @@
   (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))))
 (global-set-key (kbd "C-c o") 'switch-to-other-buffer)
 
-; Neotree
+; Navigation
 (require 'neotree)
 (global-set-key (kbd "C-c n") 'neotree-toggle)
+
+(require 'dired-sidebar)
+(global-set-key (kbd "C-c d") 'dired-sidebar-toggle-sidebar)
+(setq dired-sidebar-should-follow-file t)
+(setq dired-sidebar-follow-file-idle-delay 0.5)
 
 ; Window order and orientation
 ; http://www.emacswiki.org/emacs/TransposeWindows
