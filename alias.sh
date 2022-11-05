@@ -9,3 +9,9 @@ alias k='kubectl'
 alias when="ts '[%Y-%m-%d %H:%M:%.S]'"
 alias gotest='while true; do inotifywait -e close_write -r . 2>/dev/null ; clear ; go test ./... ; done'
 alias org='emacs ~/org/log.org'
+
+alias sighup='kill -1'
+alias sigint='kill -2'
+alias sigquit='kill -3'
+alias sigkill='kill -9'
+alias sigterm='kill -15'
