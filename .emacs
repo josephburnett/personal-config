@@ -60,7 +60,8 @@
    '(("d" "Dashboard"
       ((agenda "-f"
 	       ((org-agenda-span 7)
-		(org-deadline-warning-days 0)))
+		(org-deadline-warning-days 0)
+		(org-agenda-sorting-strategy '(priority-down effort-up))))
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
        (tags-todo "IMPORTANT" nil)
