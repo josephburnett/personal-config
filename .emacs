@@ -64,9 +64,7 @@
 		(org-agenda-sorting-strategy '(priority-down effort-up))))
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
-       (tags-todo "IMPORTANT" nil)
-       (tags-todo "machine" nil)
-       (tags-todo "devex"))
+       (tags-todo "IMPORTANT" nil))
       nil)))
  '(org-agenda-files '("~/org/notes.org" "~/org/log.org"))
  '(org-agenda-prefix-format
