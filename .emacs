@@ -77,9 +77,12 @@
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
  '(org-priority-faces
-   '((65 :background "blue" :foreground "white" :weight bold)
-     (66 :background "blue" :foreground "white" :weight normal)
-     (67 :background "blue" :foreground "white" :weight normal)))
+   '((65 :background "black" :foreground "white" :weight bold)
+     (66 :background "black" :foreground "white" :weight normal)
+     (67 :background "black" :foreground "white" :weight normal)
+     (68 :background "black" :foreground "white" :weight normal)
+     (69 :background "black" :foreground "white" :weight normal)
+     (70 :background "black" :foreground "white" :weight normal)))
  '(org-tag-faces
    '(("IMPORTANT" :foreground "purple")
      ("URGENT" :foreground "red")
@@ -109,8 +112,8 @@
 (global-set-key "\C-cf" 'org-gcal-fetch)
 (global-set-key "\C-ck" 'org-gcal-delete-at-point)
 (setq org-highest-priority ?A)
-(setq org-default-priority ?C)
-(setq org-lowest-priority ?C)
+(setq org-default-priority ?F)
+(setq org-lowest-priority ?F)
 (setq org-reverse-note-order t)
 (setq org-link-search-must-match-exact-headline nil)
 
