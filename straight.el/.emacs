@@ -117,6 +117,8 @@
   (interactive)
   (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))))
 (global-set-key (kbd "C-c o") 'switch-to-other-buffer)
+(fset 'show-ibuffer
+   "\C-x\C-b")
 (global-set-key (kbd "C-c b") 'show-ibuffer)
 
 ;; CUSTOM EDITING FUNCTIONS ;;
