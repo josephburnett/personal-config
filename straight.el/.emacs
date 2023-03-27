@@ -112,14 +112,23 @@
 
 ;; BUFFER MANAGEMENT
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 40 40 :left :elide) " "
+              (size 9 -1 :right) " "
+              (mode 16 16 :left :elide) " " filename-and-process)
+        (mark " " (name 16 -1) " " filename)))
+(fset 'show-ibuffer
+   "\C-x\C-b")
+(global-set-key (kbd "C-c b") 'show-ibuffer)
+
 (defun switch-to-other-buffer ()
   "Switch to other buffer."
   (interactive)
   (switch-to-buffer (other-buffer (get-buffer "*Ibuffer*"))))
 (global-set-key (kbd "C-c o") 'switch-to-other-buffer)
-(fset 'show-ibuffer
-   "\C-x\C-b")
-(global-set-key (kbd "C-c b") 'show-ibuffer)
 
 ;; CUSTOM EDITING FUNCTIONS ;;
 
