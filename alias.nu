@@ -21,14 +21,14 @@ alias sigkill = kill -9
 alias sigterm = kill -15
 
 def gt [] {
-    glab api 'https://gitlab.com/api/v4/todos?per_page=50&order_by=last_activity_at&sort=asc' | from json | sort-by action_name | each { |todo| { action: $todo.action_name, url: $todo.target_url, body: ($todo.body | str substring 0..50) } }
+    glab api 'https://gitlab.com/api/v4/todos?per_page=50&order_by=last_activity_at&sort=asc' | from json | sort-by updated_at | each { |todo| { date: ($todo.updated_at | date format "%Y-%m-%d %H:%M:%S"), url: $todo.target_url, body: ($todo.body | str substring 0..50) } } | table
 }
 
 def gtw [] {
     clear
     while true {
         gt
-        sleep 1min
+        sleep 5min
         clear
     }
 }
