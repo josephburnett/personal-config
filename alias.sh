@@ -10,6 +10,7 @@ alias when="ts '[%Y-%m-%d %H:%M:%.S]'"
 alias gotest='while true; do inotifywait -e close_write -r . 2>/dev/null ; clear ; go test ./... ; done'
 alias org='emacs ~/org/log.org'
 alias sshsock='eval "$(ssh-agent -s)"'
+alias t='thyme'
 
 alias sighup='kill -1'
 alias sigint='kill -2'
