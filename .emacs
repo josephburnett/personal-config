@@ -31,7 +31,7 @@
 (setq visible-bell 1)
 
 ; Line numbers
-(global-linum-mode t)
+(global-display-line-numbers-mode 1)
 (setq linum-format "%d  ")
 ;; Ensure use-package is installed
 (unless (package-installed-p 'use-package)
@@ -61,7 +61,8 @@
       ((agenda "-f"
 	       ((org-agenda-span 7)
 		(org-deadline-warning-days 0)
-		(org-agenda-sorting-strategy '(priority-down effort-up))))
+		(org-agenda-sorting-strategy
+		 '(priority-down effort-up))))
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
        (tags-todo "IMPORTANT" nil))
@@ -89,7 +90,7 @@
      ("PROMISE" :foreground "cyan")))
  '(org-tags-column 0)
  '(package-selected-packages
-   '(dired-sidebar clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru)))
+   '(terraform-mode dired-sidebar clojure-mode cider-eval-sexp-fu lua-mode markdown-preview-mode protobuf-mode cider go-guru)))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
