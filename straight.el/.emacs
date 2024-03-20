@@ -26,6 +26,8 @@
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
 (straight-use-package 'company-mode)
+(straight-use-package 'terraform-mode)
+(straight-use-package 'protobuf-mode)
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 (defun lsp-go-install-save-hooks ()
@@ -62,9 +64,10 @@
 		(org-agenda-sorting-strategy '(priority-down effort-up))))
        (tags-todo "PROMISE" nil)
        (tags-todo "URGENT" nil)
-       (tags-todo "IMPORTANT" nil))
+       (tags-todo "IMPORTANT" nil)
+       (tags-todo "REMOTE" nil))
       nil)))
- '(org-agenda-files '("~/org/notes.org" "~/org/log.org"))
+ '(org-agenda-files '("~/org/notes.org" "~/org/log.org" "~/org/remote.org"))
  '(org-agenda-prefix-format
    '((agenda . " %-6e| ")
      (todo . " %-6e| ")
@@ -94,8 +97,8 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n  SCHEDULED: %t\n  %i\n  %U\n" :prepend t)
-	("d" "Done" entry (file "~/org/log.org") "* DONE %?\n  SCHEDULED: %t\n  %i\n  CLOSED: %U\n  %U\n" :prepend t)
+      '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n  %t\n  %i\n  %U\n" :prepend t)
+	("d" "Done" entry (file "~/org/log.org") "* DONE %?\n  %t\n  %i\n  CLOSED: %U\n  %U\n" :prepend t)
         ("n" "Note" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)

@@ -11,6 +11,7 @@ alias gotest='while true; do inotifywait -e close_write -r . 2>/dev/null ; clear
 alias org='emacs ~/org/log.org'
 alias sshsock='eval "$(ssh-agent -s)"'
 alias t='thyme'
+alias gm='cmdg'
 
 alias sighup='kill -1'
 alias sigint='kill -2'
