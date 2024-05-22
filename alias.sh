@@ -12,6 +12,7 @@ alias org='emacs ~/org/log.org'
 alias sshsock='eval "$(ssh-agent -s)"'
 alias t='thyme'
 alias gm='cmdg'
+alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive"
 
 alias sighup='kill -1'
 alias sigint='kill -2'
