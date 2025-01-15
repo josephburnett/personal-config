@@ -75,8 +75,8 @@
      (search . " %-6e| ")))
  '(org-agenda-remove-tags nil)
  '(org-agenda-tags-column 0)
- '(org-fontify-done-headline nil)
- '(org-fontify-todo-headline nil)
+ '(org-fontify-done-headline t)
+ '(org-fontify-todo-headline t)
  '(org-priority-faces
    '((65 :background "black" :foreground "white" :weight bold)
      (66 :background "black" :foreground "white" :weight normal)
