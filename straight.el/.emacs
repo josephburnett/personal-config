@@ -40,7 +40,7 @@
 (menu-bar-mode -1)
 (global-auto-revert-mode t)
 (setq visible-bell 1)
-(global-linum-mode t)
+(global-display-line-numbers-mode 1)
 (setq linum-format "%d  ")
 
 ; Mouse
