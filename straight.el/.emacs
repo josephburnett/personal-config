@@ -42,6 +42,7 @@
 (setq visible-bell 1)
 (global-display-line-numbers-mode 1)
 (setq linum-format "%d  ")
+(add-to-list 'vc-directory-exclusion-list ".asdf")
 
 ; Mouse
 (xterm-mouse-mode)
