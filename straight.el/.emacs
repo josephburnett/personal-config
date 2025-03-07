@@ -58,16 +58,30 @@
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(custom-enabled-themes '(manoj-dark))
  '(org-agenda-custom-commands
-   '(("d" "Dashboard"
-      ((agenda "-f"
-	       ((org-agenda-span 7)
-		(org-deadline-warning-days 0)
-		(org-agenda-sorting-strategy '(priority-down effort-up))))
-       (tags-todo "PROMISE" nil)
-       (tags-todo "URGENT" nil)
-       (tags-todo "IMPORTANT" nil)
-       (tags-todo "REMOTE" nil))
-      nil)))
+   '(
+     ;; ("d" "Dashboard"
+     ;;  ((agenda "-f"
+     ;; 	       ((org-agenda-span 7)
+     ;; 		(org-deadline-warning-days 0)
+     ;; 		(org-agenda-sorting-strategy '(priority-down effort-up))))
+     ;;   (tags-todo "PROMISE" nil)
+     ;;   (tags-todo "URGENT" nil)
+     ;;   (tags-todo "IMPORTANT" nil)
+     ;;   (tags-todo "REMOTE" nil))
+     ;;  nil)
+     ("d" "Deadlines"
+      ((agenda ""
+	       ((org-agenda-span 365)
+		(org-agenda-start-day "today")
+		(org-agenda-show-all-dates nil)
+		(org-agenda-skip-function
+                 '(org-agenda-skip-entry-if 'todo 'done))
+		(org-deadline-warning-days 30)
+		(org-agenda-sorting-strategy
+                 '(deadline-up))
+		(org-agenda-prefix-format
+                 '((agenda . "  %?-12t% s")))
+		(org-agenda-time-grid nil)))))))
  '(org-agenda-files '("~/org/notes.org" "~/org/log.org" "~/org/remote.org"))
  '(org-agenda-prefix-format
    '((agenda . " %-6e| ")
@@ -93,9 +107,15 @@
 
 ;; ORG MODE
 
+(defun my/org-deadline-dashboard ()
+  "Open the org deadline dashboard."
+  (interactive)
+  (org-agenda nil "d"))
+
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c d") 'my/org-deadline-dashboard)
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n  %t\n  %i\n  %U\n" :prepend t)
