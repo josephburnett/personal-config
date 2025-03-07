@@ -118,9 +118,9 @@
 (global-set-key (kbd "C-c d") 'my/org-deadline-dashboard)
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n  %t\n  %i\n  %U\n" :prepend t)
-	("d" "Done" entry (file "~/org/log.org") "* DONE %?\n  %t\n  %i\n  CLOSED: %U\n  %U\n" :prepend t)
-        ("n" "Note" entry (file "~/org/notes.org") "* %?\n  %i\n  %U\n" :prepend t)))
+      '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n%t\n%i\n%U\n" :prepend t)
+	("d" "Done" entry (file "~/org/log.org") "* DONE %?\n%t\n%i\nCLOSED: %U\n%U\n" :prepend t)
+        ("n" "Note" entry (file "~/org/notes.org") "* %?\n%i\n%U\n" :prepend t)))
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
 (setq org-refile-targets '(("log.org" :maxlevel . 2)
