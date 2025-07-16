@@ -14,6 +14,16 @@
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
 
+; Google Calendar
+(use-package org-gcal
+  :straight t
+  :init
+  (load-file "~/gcal-secrets.el")
+  (setq org-gcal-client-id my-gcal-client-id
+        org-gcal-client-secret my-gcal-client-secret
+        org-gcal-fetch-file-alist
+        `((,my-gcal-email . "~/org/gcal.org"))))
+
 ; Golang
 ; https://geeksocket.in/posts/emacs-lsp-go/
 ;
@@ -59,29 +69,36 @@
  '(custom-enabled-themes '(manoj-dark))
  '(org-agenda-custom-commands
    '(
-     ;; ("d" "Dashboard"
-     ;;  ((agenda "-f"
-     ;; 	       ((org-agenda-span 7)
-     ;; 		(org-deadline-warning-days 0)
-     ;; 		(org-agenda-sorting-strategy '(priority-down effort-up))))
-     ;;   (tags-todo "PROMISE" nil)
-     ;;   (tags-todo "URGENT" nil)
-     ;;   (tags-todo "IMPORTANT" nil)
-     ;;   (tags-todo "REMOTE" nil))
-     ;;  nil)
-     ("d" "Deadlines"
-      ((agenda ""
-	       ((org-agenda-span 365)
-		(org-agenda-start-day "today")
-		(org-agenda-show-all-dates nil)
-		(org-agenda-skip-function
-                 '(org-agenda-skip-entry-if 'todo 'done))
-		(org-deadline-warning-days 30)
-		(org-agenda-sorting-strategy
-                 '(deadline-up))
-		(org-agenda-prefix-format
-                 '((agenda . "  %?-12t% s")))
-		(org-agenda-time-grid nil)))))))
+     ("d" "Dashboard"
+      ((agenda "-f"
+	       ((org-agenda-span 7)
+		(org-deadline-warning-days 0)
+		(org-agenda-sorting-strategy '(priority-down effort-up))))
+       (tags-todo "BLOCKING" nil)
+       (tags-todo "COMMITMENT" nil)
+       (tags-todo "ROCK" nil)
+       (tags-todo "GROWTH" nil)
+       (tags-todo "CONNECTION" nil)
+       (tags-todo "IDEA" nil)
+       (tags-todo "BACKLOG" nil))
+       ;; (tags-todo "PROMISE" nil)
+       ;; (tags-todo "URGENT" nil)
+       ;; (tags-todo "IMPORTANT" nil)
+       ;; (tags-todo "REMOTE" nil))
+      nil)))
+     ;; ("d" "Deadlines"
+     ;;  ((agenda ""
+     ;; 	       ((org-agenda-span 365)
+     ;; 		(org-agenda-start-day "today")
+     ;; 		(org-agenda-show-all-dates nil)
+     ;; 		(org-agenda-skip-function
+     ;;             '(org-agenda-skip-entry-if 'todo 'done))
+     ;; 		(org-deadline-warning-days 30)
+     ;; 		(org-agenda-sorting-strategy
+     ;;             '(deadline-up))
+     ;; 		(org-agenda-prefix-format
+     ;;             '((agenda . "  %?-12t% s")))
+     ;; 		(org-agenda-time-grid nil)))))))
  '(org-agenda-files '("~/org/notes.org" "~/org/log.org" "~/org/remote.org"))
  '(org-agenda-prefix-format
    '((agenda . " %-6e| ")
@@ -100,9 +117,16 @@
      (69 :background "black" :foreground "white" :weight normal)
      (70 :background "black" :foreground "white" :weight normal)))
  '(org-tag-faces
-   '(("IMPORTANT" :foreground "purple")
-     ("URGENT" :foreground "red")
-     ("PROMISE" :foreground "cyan")))
+   '(("BLOCKING" :foreground "red")
+     ("COMMITMENT" :foreground "cyan")
+     ("ROCK" :foreground "cyan")
+     ("GROWTH" :foreground "purple")
+     ("CONNECTION" :foreground "purple")
+     ("IDEA" :foreground "purple")
+     ("BACKLOG" :foreground "purple")
+     ("PROMISE" :foreground "cyan")
+     ("IMPORTANT" :foreground "purple")
+     ("URGENT" :foreground "red")))
  '(org-tags-column 0))
 
 ;; ORG MODE
