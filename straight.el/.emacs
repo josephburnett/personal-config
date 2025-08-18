@@ -23,6 +23,8 @@
         org-gcal-client-secret my-gcal-client-secret
         org-gcal-fetch-file-alist
         `((,my-gcal-email . "~/org/gcal.org"))))
+;; Automatically remove cancelled events without asking
+(setq org-gcal-remove-cancelled-events t)
 
 ; Golang
 ; https://geeksocket.in/posts/emacs-lsp-go/
@@ -47,7 +49,7 @@
 (add-hook 'go-mode-hook #'lsp-deferred)
 
 ; Preferences
-(menu-bar-mode -1)
+(menu-bar-mode)
 (global-auto-revert-mode t)
 (setq visible-bell 1)
 (global-display-line-numbers-mode 1)
@@ -60,6 +62,16 @@
 (defun down-slightly () (interactive) (scroll-down 1))
 (global-set-key (kbd "<mouse-4>") 'down-slightly)
 (global-set-key (kbd "<mouse-5>") 'up-slightly)
+(global-set-key (kbd "<wheel-up>") 'down-slightly)
+(global-set-key (kbd "<wheel-down>") 'up-slightly)
+
+; MCP
+(straight-use-package 'vterm)
+(use-package claude-code-ide
+  :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
+  :bind ("C-c C-v" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 ; Autosave / Theme / Org agenda
 (make-directory "~/.emacs.d/autosaves/" t)

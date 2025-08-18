@@ -19,3 +19,5 @@ alias sigint='kill -2'
 alias sigquit='kill -3'
 alias sigkill='kill -9'
 alias sigterm='kill -15'
+
+alias emacs='emacs -nw'
