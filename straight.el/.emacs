@@ -122,12 +122,12 @@
  '(org-fontify-done-headline t)
  '(org-fontify-todo-headline t)
  '(org-priority-faces
-   '((65 :background "black" :foreground "white" :weight bold)
-     (66 :background "black" :foreground "white" :weight normal)
-     (67 :background "black" :foreground "white" :weight normal)
-     (68 :background "black" :foreground "white" :weight normal)
-     (69 :background "black" :foreground "white" :weight normal)
-     (70 :background "black" :foreground "white" :weight normal)))
+   '((65 :foreground "red" :weight bold)
+     (66 :foreground "yellow" :weight normal)
+     (67 :foreground "green" :weight normal)
+     (68 :foreground "blue" :weight normal)
+     (69 :foreground "purple" :weight normal)
+     (70 :foreground "purple" :weight normal)))
  '(org-tag-faces
    '(("BLOCKING" :foreground "red")
      ("COMMITMENT" :foreground "cyan")
