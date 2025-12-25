@@ -15,14 +15,14 @@
 (setq package-enable-at-startup nil)
 
 ; Google Calendar
-(use-package org-gcal
-  :straight t
-  :init
-  (load-file "~/gcal-secrets.el")
-  (setq org-gcal-client-id my-gcal-client-id
-        org-gcal-client-secret my-gcal-client-secret
-        org-gcal-fetch-file-alist
-        `((,my-gcal-email . "~/org/gcal.org"))))
+;; (use-package org-gcal
+;;   :straight t
+;;   :init
+;;   (load-file "~/gcal-secrets.el")
+;;   (setq org-gcal-client-id my-gcal-client-id
+;;         org-gcal-client-secret my-gcal-client-secret
+;;         org-gcal-fetch-file-alist
+;;         `((,my-gcal-email . "~/org/gcal.org"))))
 ;; Automatically remove cancelled events without asking
 (setq org-gcal-remove-cancelled-events t)
 
