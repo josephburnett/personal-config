@@ -148,10 +148,41 @@
   (interactive)
   (org-agenda nil "d"))
 
+(defun my/agenda-to-plan ()
+  "Append today's agenda entries to today.org as simple checkbox list with links."
+  (interactive)
+  (require 'org-agenda)
+  (let ((entries '())
+        (today-file "~/org/today.org")
+        (today (time-to-days (current-time))))
+    ;; Collect entries from agenda buffer - only for today
+    (save-excursion
+      (goto-char (point-min))
+      (while (not (eobp))
+        (when (and (get-text-property (point) 'org-marker)
+                   (eq (get-text-property (point) 'day) today))
+          (let ((marker (get-text-property (point) 'org-marker)))
+            (with-current-buffer (marker-buffer marker)
+              (save-excursion
+                (goto-char marker)
+                (let* ((heading (org-get-heading t t t t))
+                       (file (buffer-file-name))
+                       (link (concat "file:" file "::" "*" heading)))
+                  (push (cons heading link) entries))))))
+        (forward-line 1)))
+    ;; Append to today.org
+    (with-current-buffer (find-file-noselect today-file)
+      (goto-char (point-max))
+      (dolist (entry (nreverse entries))
+        (insert (format "- [ ] [[%s][%s]]\n" (cdr entry) (car entry))))
+      (save-buffer))
+    (message "Added %d entries to today.org" (length entries))))
+
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c d") 'my/org-deadline-dashboard)
+(global-set-key (kbd "C-c p") 'my/agenda-to-plan)
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/log.org") "* TODO %?\n%t\n%i\n%U\n" :prepend t)
